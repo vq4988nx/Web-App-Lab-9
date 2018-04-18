@@ -13,11 +13,13 @@ public class Task {
 
     private boolean urgent;
 
+//    This is the constructor for the task object
     public Task(String text, boolean urgent) {
         this.text = text;
         this.urgent = urgent;
     }
 
+//    These are the getters and setters for the task object
     public Long getId() {
         return id;
     }

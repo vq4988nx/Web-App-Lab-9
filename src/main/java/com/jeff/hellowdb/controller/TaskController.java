@@ -13,8 +13,7 @@ import org.springframework.web.servlet.view.RedirectView;
 @Controller
 public class TaskController {
 
-    /* The TaskRepository is an object that will interact with the
-    Task database table, so save new Tasks, query for tasks... */
+//This task object will interact with the database
     private final TaskRepository tasks;
 
     @Autowired
@@ -22,28 +21,20 @@ public class TaskController {
         this.tasks = tasks;
     }
 
-    /* Handles requests to the home page. Displays a form that's bound to a new
-    * Task object. In the future, When the form is submitted from the browser,
-    * (submitting the form creates a POST request to the /addTask route, below)
-    * the Task object will be updated to include the data entered in the form, and this
-    * Task object will be sent to the server as part of the request. */
+//This will always direct to the home page
     @RequestMapping("/")
     public ModelAndView addTask() {
         return new ModelAndView("createTask.html", "task", new Task());
     }
 
-    /* Handles form submission requests. Saves the Task sent with the request, and
-    * redirect (creates a new request to) the /allTasks route. */
+//This is a post method that will redirect to the /addTask page
     @RequestMapping(value="/addTask", method= RequestMethod.POST)
     public RedirectView addNewTask(Task task) {
         tasks.save(task);
         return new RedirectView("/allTasks");
     }
 
-    /* Handles requests to the /allTasks page. The modelMap object will be populated with
-    * a list of Task objects that we'll get by asking the tasks repository to query
-    * the database. Returns a View (the Thymeleaf template) which will be combined with
-    * the modelMap data to produce the HTML page. */
+//This will direct to the /allTasks page, where the database will be queried for all tasks
     @RequestMapping("/allTasks")
     public ModelAndView allTasks(ModelMap modelMap){
         modelMap.addAttribute("tasks", tasks.findAll());

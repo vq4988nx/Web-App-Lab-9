@@ -16,10 +16,14 @@
 
 <h1>All the tasks</h1>
 
+
+
 <h2 th:text= "${ tasks.size() } + ' task(s) to do' ">Tasks to Do!</h2>
 
+<!--This is a table for all of the tasks...no matter how many there are-->
 <ul>
     <li th:each="task : ${tasks}">
+        <!--If the property is task.urgent, then it will insert the urgent.png next to the table entry-->
         <img class="urgent-icon" th:if="${task.urgent}" src="img/urgent.png">
         <span th:text="${task.text}"></span>
     </li>

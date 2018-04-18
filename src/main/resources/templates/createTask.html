@@ -5,6 +5,7 @@
 <body>
 <h1>Enter a new task</h1>
 
+<!--This is doing a POST to the /addTask page.  It is inserting the current task object-->
 <form action="#" method="POST" th:action="@{/addTask}" th:object="${task}">
     <input type = "text" placeholder="task description" th:field="*{text}" />
     Urgent? <input type="checkbox" th:field="*{urgent}" />
